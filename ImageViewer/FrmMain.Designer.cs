@@ -34,10 +34,13 @@
             this.PbMainDisplay = new System.Windows.Forms.PictureBox();
             this.PnlBottomBar = new System.Windows.Forms.Panel();
             this.BtnRotateRight = new System.Windows.Forms.Button();
-            this.ImgMain = new System.Windows.Forms.ImageList(this.components);
+            this.ImgSmall = new System.Windows.Forms.ImageList(this.components);
             this.BtnRotateLeft = new System.Windows.Forms.Button();
             this.BtnBrowseImage = new System.Windows.Forms.Button();
             this.OpfdBrowseImage = new System.Windows.Forms.OpenFileDialog();
+            this.BtnChangePicturesFolderPath = new System.Windows.Forms.Button();
+            this.ImgBig = new System.Windows.Forms.ImageList(this.components);
+            this.FbdPicturesFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.TblMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbMainDisplay)).BeginInit();
             this.PnlBottomBar.SuspendLayout();
@@ -74,6 +77,7 @@
             // PnlBottomBar
             // 
             this.PnlBottomBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.PnlBottomBar.Controls.Add(this.BtnChangePicturesFolderPath);
             this.PnlBottomBar.Controls.Add(this.BtnRotateRight);
             this.PnlBottomBar.Controls.Add(this.BtnRotateLeft);
             this.PnlBottomBar.Controls.Add(this.BtnBrowseImage);
@@ -92,7 +96,7 @@
             this.BtnRotateRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnRotateRight.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
             this.BtnRotateRight.ImageKey = "rotate-right.png";
-            this.BtnRotateRight.ImageList = this.ImgMain;
+            this.BtnRotateRight.ImageList = this.ImgSmall;
             this.BtnRotateRight.Location = new System.Drawing.Point(48, 6);
             this.BtnRotateRight.Name = "BtnRotateRight";
             this.BtnRotateRight.Size = new System.Drawing.Size(33, 30);
@@ -100,12 +104,12 @@
             this.BtnRotateRight.UseVisualStyleBackColor = true;
             this.BtnRotateRight.Click += new System.EventHandler(this.BtnRotateRight_Click);
             // 
-            // ImgMain
+            // ImgSmall
             // 
-            this.ImgMain.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgMain.ImageStream")));
-            this.ImgMain.TransparentColor = System.Drawing.Color.Transparent;
-            this.ImgMain.Images.SetKeyName(0, "rotate-left.png");
-            this.ImgMain.Images.SetKeyName(1, "rotate-right.png");
+            this.ImgSmall.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgSmall.ImageStream")));
+            this.ImgSmall.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImgSmall.Images.SetKeyName(0, "rotate-left.png");
+            this.ImgSmall.Images.SetKeyName(1, "rotate-right.png");
             // 
             // BtnRotateLeft
             // 
@@ -116,7 +120,7 @@
             this.BtnRotateLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnRotateLeft.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
             this.BtnRotateLeft.ImageKey = "rotate-left.png";
-            this.BtnRotateLeft.ImageList = this.ImgMain;
+            this.BtnRotateLeft.ImageList = this.ImgSmall;
             this.BtnRotateLeft.Location = new System.Drawing.Point(9, 6);
             this.BtnRotateLeft.Name = "BtnRotateLeft";
             this.BtnRotateLeft.Size = new System.Drawing.Size(33, 30);
@@ -143,6 +147,35 @@
             // OpfdBrowseImage
             // 
             this.OpfdBrowseImage.Title = "View Image";
+            // 
+            // BtnChangePicturesFolderPath
+            // 
+            this.BtnChangePicturesFolderPath.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnChangePicturesFolderPath.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnChangePicturesFolderPath.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnChangePicturesFolderPath.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.BtnChangePicturesFolderPath.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
+            this.BtnChangePicturesFolderPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnChangePicturesFolderPath.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
+            this.BtnChangePicturesFolderPath.ImageKey = "ChangeFolderIcon24X24.png";
+            this.BtnChangePicturesFolderPath.ImageList = this.ImgBig;
+            this.BtnChangePicturesFolderPath.Location = new System.Drawing.Point(420, 6);
+            this.BtnChangePicturesFolderPath.Name = "BtnChangePicturesFolderPath";
+            this.BtnChangePicturesFolderPath.Size = new System.Drawing.Size(33, 30);
+            this.BtnChangePicturesFolderPath.TabIndex = 4;
+            this.BtnChangePicturesFolderPath.UseVisualStyleBackColor = true;
+            this.BtnChangePicturesFolderPath.Click += new System.EventHandler(this.BtnChangePicturesFolderPath_Click);
+            // 
+            // ImgBig
+            // 
+            this.ImgBig.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgBig.ImageStream")));
+            this.ImgBig.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImgBig.Images.SetKeyName(0, "ChangeFolderIcon24X24.png");
+            // 
+            // FbdPicturesFolder
+            // 
+            this.FbdPicturesFolder.Description = "Choose your default initial Pictures folder";
+            this.FbdPicturesFolder.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
             // FrmMain
             // 
@@ -174,8 +207,11 @@
         private System.Windows.Forms.PictureBox PbMainDisplay;
         private System.Windows.Forms.OpenFileDialog OpfdBrowseImage;
         private System.Windows.Forms.Button BtnRotateLeft;
-        private System.Windows.Forms.ImageList ImgMain;
+        private System.Windows.Forms.ImageList ImgSmall;
         private System.Windows.Forms.Button BtnRotateRight;
+        private System.Windows.Forms.Button BtnChangePicturesFolderPath;
+        private System.Windows.Forms.ImageList ImgBig;
+        private System.Windows.Forms.FolderBrowserDialog FbdPicturesFolder;
     }
 }
 

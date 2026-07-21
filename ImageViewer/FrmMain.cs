@@ -2,7 +2,6 @@
 using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace ImageViewer
@@ -51,9 +50,15 @@ namespace ImageViewer
             return !_IsInvalidImage;
         }
 
+        private string GetPicturesFolderPath()
+        {
+            return String.IsNullOrWhiteSpace(Settings.Default.PicturesFolderPath) || !Directory.Exists(Settings.Default.PicturesFolderPath) ?
+                Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) : Settings.Default.PicturesFolderPath;
+        }
+
         private void BtnBrowseImage_Click(object sender, System.EventArgs e)
         {
-            OpfdBrowseImage.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            OpfdBrowseImage.InitialDirectory = GetPicturesFolderPath();
 
             if (OpfdBrowseImage.ShowDialog() == DialogResult.OK)
             {
@@ -102,6 +107,15 @@ namespace ImageViewer
                 if (!TryDisplayImage(_InitialImagePath))
                     Application.Exit();
                 _InitialImagePath = null;
+            }
+        }
+
+        private void BtnChangePicturesFolderPath_Click(object sender, EventArgs e)
+        {
+            if (FbdPicturesFolder.ShowDialog() == DialogResult.OK)
+            {
+                Settings.Default.PicturesFolderPath = FbdPicturesFolder.SelectedPath;
+                Settings.Default.Save();
             }
         }
     }
