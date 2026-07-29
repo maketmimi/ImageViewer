@@ -37,6 +37,13 @@ namespace ImageViewer
 
             flipHorizentolToolStripMenuItem.Tag = RotateFlipType.RotateNoneFlipX;
             flipVerticalToolStripMenuItem.Tag = RotateFlipType.RotateNoneFlipY;
+            
+            CTsm90DegreesRotation.Tag = RotateFlipType.Rotate90FlipNone;
+            CTsm180DegreesRotation.Tag = RotateFlipType.Rotate180FlipNone;
+            CTsm270DegreesRotation.Tag = RotateFlipType.Rotate270FlipNone;
+
+            CTsmFlipHorizontal.Tag = RotateFlipType.RotateNoneFlipX;
+            CTsmFlipVertical.Tag = RotateFlipType.RotateNoneFlipY;
         }
 
         private bool TryDisplayImage(string ImagePath)
@@ -68,9 +75,14 @@ namespace ImageViewer
                 Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) : Settings.Default.PicturesFolderPath;
         }
 
+        private bool IsValidImageShown()
+        {
+            return PbMainDisplay.Image != null && !_IsInvalidImage;
+        }
+
         private void RotateImage(RotateFlipType RotateType)
         {
-            if (PbMainDisplay.Image != null && !_IsInvalidImage)
+            if (IsValidImageShown())
             {
                 PbMainDisplay.Image.RotateFlip(RotateType);
                 RecalculateImageSizeAndSizeMode();
@@ -134,6 +146,22 @@ namespace ImageViewer
             {
                 Settings.Default.PicturesFolderPath = FbdPicturesFolder.SelectedPath;
                 Settings.Default.Save();
+            }
+        }
+
+        private void CmImage_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!IsValidImageShown())
+            {
+                CTsmRotateImage.Visible = false;
+                CTsmFlipImage.Visible = false;
+                CTsmSeperator1.Visible = false;
+            }
+            else
+            {
+                CTsmRotateImage.Visible = true;
+                CTsmFlipImage.Visible = true;
+                CTsmSeperator1.Visible = true;
             }
         }
     }
