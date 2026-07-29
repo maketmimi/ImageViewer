@@ -97,6 +97,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\BrowseImage.png" />
     <Content Include="Assets\ChangeFolderIcon.png" />
     <Content Include="Assets\ChangeFolderIcon24X24.png" />
     <Content Include="Assets\image.ico" />
@@ -105,6 +106,7 @@
     <Content Include="Assets\ImageInavlidErrorSmall.png" />
     <Content Include="Assets\rotate-left.png" />
     <Content Include="Assets\rotate-right.png" />
+    <Content Include="Assets\RotateImageIcon.png" />
     <Content Include="image.ico" />
     <Content Include="TODO.txt" />
   </ItemGroup>

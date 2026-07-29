@@ -24,7 +24,19 @@ namespace ImageViewer
                 "TIFF (*.tif;*.tiff)|*.tif;*.tiff|" +
                 "Icon (*.ico)|*.ico";
 
+            InitializeRotateAndFlipMenuItemsTags();
+
             _InitialImagePath = InitialImagePath;
+        }
+
+        private void InitializeRotateAndFlipMenuItemsTags()
+        {
+            Rotate90degreesClockWiseToolStripMenuItem.Tag = RotateFlipType.Rotate90FlipNone;
+            Rotate180degreesClockWiseToolStripMenuItem.Tag = RotateFlipType.Rotate180FlipNone;
+            Rotate270degreesClockWiseToolStripMenuItem.Tag = RotateFlipType.Rotate270FlipNone;
+
+            flipHorizentolToolStripMenuItem.Tag = RotateFlipType.RotateNoneFlipX;
+            flipVerticalToolStripMenuItem.Tag = RotateFlipType.RotateNoneFlipY;
         }
 
         private bool TryDisplayImage(string ImagePath)
@@ -56,21 +68,12 @@ namespace ImageViewer
                 Environment.GetFolderPath(Environment.SpecialFolder.MyPictures) : Settings.Default.PicturesFolderPath;
         }
 
-        private void BtnBrowseImage_Click(object sender, System.EventArgs e)
-        {
-            OpfdBrowseImage.InitialDirectory = GetPicturesFolderPath();
-
-            if (OpfdBrowseImage.ShowDialog() == DialogResult.OK)
-            {
-                TryDisplayImage(OpfdBrowseImage.FileName);
-            }
-        }
-
         private void RotateImage(RotateFlipType RotateType)
         {
             if (PbMainDisplay.Image != null && !_IsInvalidImage)
             {
                 PbMainDisplay.Image.RotateFlip(RotateType);
+                RecalculateImageSizeAndSizeMode();
                 PbMainDisplay.Invalidate();
             }
         }
@@ -110,7 +113,22 @@ namespace ImageViewer
             }
         }
 
-        private void BtnChangePicturesFolderPath_Click(object sender, EventArgs e)
+        private void OpenPictureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpfdBrowseImage.InitialDirectory = GetPicturesFolderPath();
+
+            if (OpfdBrowseImage.ShowDialog() == DialogResult.OK)
+            {
+                TryDisplayImage(OpfdBrowseImage.FileName);
+            }
+        }
+
+        private void RotateFlipImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RotateImage((RotateFlipType)(((ToolStripMenuItem)sender).Tag));
+        }
+
+        private void ChangePicturesFolderPathToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (FbdPicturesFolder.ShowDialog() == DialogResult.OK)
             {
