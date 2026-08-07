@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ImageViewer
@@ -10,6 +11,22 @@ namespace ImageViewer
     {
         private bool _IsInvalidImage = false;
         private string _InitialImagePath = null;
+        private string[] _CurrentDirectoryFilesPaths = null;
+        private int _CurrentImageIndex;
+        private readonly string[] AllSupportedImageTypes =
+        {
+            ".bmp",
+            ".dib" ,
+            ".jpg" ,
+            ".jpeg" ,
+            ".jpe" ,
+            ".jfif" ,
+            ".png" ,
+            ".gif" ,
+            ".tif" ,
+            ".tiff" ,
+            ".ico"
+        };
 
         public FrmMain(string InitialImagePath = null)
         {
@@ -44,6 +61,36 @@ namespace ImageViewer
 
             CTsmFlipHorizontal.Tag = RotateFlipType.RotateNoneFlipX;
             CTsmFlipVertical.Tag = RotateFlipType.RotateNoneFlipY;
+        }
+
+        private void SetNavigationButtonsEnableState(bool Enabled)
+        {
+            BtnNextImage.Enabled = Enabled;
+            BtnPreviousImage.Enabled = Enabled;
+        }
+
+        private bool OpenNewImage(string ImagePath)
+        {
+            if (TryDisplayImage(ImagePath))
+            {
+                _CurrentDirectoryFilesPaths = Directory.GetFiles(Path.GetDirectoryName(ImagePath));
+
+                _CurrentImageIndex =
+                    Array.IndexOf(_CurrentDirectoryFilesPaths, ImagePath);
+                
+                SetNavigationButtonsEnableState(true);
+                return true;
+            }
+            else
+            {
+                SetNavigationButtonsEnableState(false);
+                return false;
+            }
+        }
+
+        private bool CheckIfValidImageType(string ImagePath)
+        {
+            return AllSupportedImageTypes.Contains(Path.GetExtension(ImagePath).ToLower());
         }
 
         private bool TryDisplayImage(string ImagePath)
@@ -119,7 +166,7 @@ namespace ImageViewer
         {
             if (_InitialImagePath != null)
             {
-                if (!TryDisplayImage(_InitialImagePath))
+                if (!OpenNewImage(_InitialImagePath))
                     Application.Exit();
                 _InitialImagePath = null;
             }
@@ -131,7 +178,7 @@ namespace ImageViewer
 
             if (OpfdBrowseImage.ShowDialog() == DialogResult.OK)
             {
-                TryDisplayImage(OpfdBrowseImage.FileName);
+                OpenNewImage(OpfdBrowseImage.FileName);
             }
         }
 
@@ -163,6 +210,44 @@ namespace ImageViewer
                 CTsmFlipImage.Visible = true;
                 CTsmSeperator1.Visible = true;
             }
+        }
+
+        private void DisplayNextImage()
+        {
+            do
+            {
+                if (_CurrentImageIndex == _CurrentDirectoryFilesPaths.Count() - 1)
+                    _CurrentImageIndex = 0;
+                else
+                    _CurrentImageIndex++;
+            }
+            while (!CheckIfValidImageType(_CurrentDirectoryFilesPaths[_CurrentImageIndex]));
+
+            TryDisplayImage(_CurrentDirectoryFilesPaths[_CurrentImageIndex]);
+        }
+
+        private void DisplayPreviousImage()
+        {
+            do
+            {
+                if (_CurrentImageIndex == 0)
+                    _CurrentImageIndex = _CurrentDirectoryFilesPaths.Count() - 1;
+                else
+                    _CurrentImageIndex--;
+            }
+            while (!CheckIfValidImageType(_CurrentDirectoryFilesPaths[_CurrentImageIndex]));
+
+            TryDisplayImage(_CurrentDirectoryFilesPaths[_CurrentImageIndex]);
+        }
+
+        private void BtnNextImage_Click(object sender, EventArgs e)
+        {
+            DisplayNextImage();
+        }
+
+        private void BtnPreviousImage_Click(object sender, EventArgs e)
+        {
+            DisplayPreviousImage();
         }
     }
 }

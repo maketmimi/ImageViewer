@@ -104,6 +104,8 @@
     <Content Include="Assets\image.png" />
     <Content Include="Assets\ImageInavlidError.png" />
     <Content Include="Assets\ImageInavlidErrorSmall.png" />
+    <Content Include="Assets\PreviosImage.png" />
+    <Content Include="Assets\NextImage.png" />
     <Content Include="Assets\rotate-left.png" />
     <Content Include="Assets\rotate-right.png" />
     <Content Include="Assets\RotateImageIcon.png" />

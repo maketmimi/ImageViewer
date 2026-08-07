@@ -32,10 +32,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.TblMain = new System.Windows.Forms.TableLayoutPanel();
             this.PbMainDisplay = new System.Windows.Forms.PictureBox();
+            this.CmImage = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CTsmBrowseImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.CTsmSeperator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.CTsmRotateImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.CTsm90DegreesRotation = new System.Windows.Forms.ToolStripMenuItem();
+            this.CTsm180DegreesRotation = new System.Windows.Forms.ToolStripMenuItem();
+            this.CTsm270DegreesRotation = new System.Windows.Forms.ToolStripMenuItem();
+            this.CTsmFlipImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.CTsmFlipVertical = new System.Windows.Forms.ToolStripMenuItem();
+            this.CTsmFlipHorizontal = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlBottomBar = new System.Windows.Forms.Panel();
-            this.BtnRotateRight = new System.Windows.Forms.Button();
+            this.BtnPreviousImage = new System.Windows.Forms.Button();
             this.ImgSmall = new System.Windows.Forms.ImageList(this.components);
-            this.BtnRotateLeft = new System.Windows.Forms.Button();
+            this.BtnNextImage = new System.Windows.Forms.Button();
             this.ImgBig = new System.Windows.Forms.ImageList(this.components);
             this.OpfdBrowseImage = new System.Windows.Forms.OpenFileDialog();
             this.FbdPicturesFolder = new System.Windows.Forms.FolderBrowserDialog();
@@ -52,21 +62,11 @@
             this.flipHorizentolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePicturesFolderPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CmImage = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.CTsmBrowseImage = new System.Windows.Forms.ToolStripMenuItem();
-            this.CTsmSeperator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.CTsmRotateImage = new System.Windows.Forms.ToolStripMenuItem();
-            this.CTsm90DegreesRotation = new System.Windows.Forms.ToolStripMenuItem();
-            this.CTsm180DegreesRotation = new System.Windows.Forms.ToolStripMenuItem();
-            this.CTsm270DegreesRotation = new System.Windows.Forms.ToolStripMenuItem();
-            this.CTsmFlipImage = new System.Windows.Forms.ToolStripMenuItem();
-            this.CTsmFlipVertical = new System.Windows.Forms.ToolStripMenuItem();
-            this.CTsmFlipHorizontal = new System.Windows.Forms.ToolStripMenuItem();
             this.TblMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbMainDisplay)).BeginInit();
+            this.CmImage.SuspendLayout();
             this.PnlBottomBar.SuspendLayout();
             this.MnsMainMenu.SuspendLayout();
-            this.CmImage.SuspendLayout();
             this.SuspendLayout();
             // 
             // TblMain
@@ -98,188 +98,6 @@
             this.PbMainDisplay.TabStop = false;
             this.PbMainDisplay.SizeChanged += new System.EventHandler(this.PbMainDisplay_SizeChanged);
             // 
-            // PnlBottomBar
-            // 
-            this.PnlBottomBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.PnlBottomBar.Controls.Add(this.BtnRotateRight);
-            this.PnlBottomBar.Controls.Add(this.BtnRotateLeft);
-            this.PnlBottomBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlBottomBar.Location = new System.Drawing.Point(3, 374);
-            this.PnlBottomBar.Name = "PnlBottomBar";
-            this.PnlBottomBar.Size = new System.Drawing.Size(736, 43);
-            this.PnlBottomBar.TabIndex = 0;
-            // 
-            // BtnRotateRight
-            // 
-            this.BtnRotateRight.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnRotateRight.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnRotateRight.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
-            this.BtnRotateRight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
-            this.BtnRotateRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnRotateRight.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
-            this.BtnRotateRight.ImageKey = "rotate-right.png";
-            this.BtnRotateRight.ImageList = this.ImgSmall;
-            this.BtnRotateRight.Location = new System.Drawing.Point(371, 6);
-            this.BtnRotateRight.Name = "BtnRotateRight";
-            this.BtnRotateRight.Size = new System.Drawing.Size(33, 30);
-            this.BtnRotateRight.TabIndex = 3;
-            this.BtnRotateRight.UseVisualStyleBackColor = true;
-            this.BtnRotateRight.Click += new System.EventHandler(this.BtnRotateRight_Click);
-            // 
-            // ImgSmall
-            // 
-            this.ImgSmall.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgSmall.ImageStream")));
-            this.ImgSmall.TransparentColor = System.Drawing.Color.Transparent;
-            this.ImgSmall.Images.SetKeyName(0, "rotate-left.png");
-            this.ImgSmall.Images.SetKeyName(1, "rotate-right.png");
-            // 
-            // BtnRotateLeft
-            // 
-            this.BtnRotateLeft.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnRotateLeft.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnRotateLeft.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
-            this.BtnRotateLeft.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
-            this.BtnRotateLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnRotateLeft.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
-            this.BtnRotateLeft.ImageKey = "rotate-left.png";
-            this.BtnRotateLeft.ImageList = this.ImgSmall;
-            this.BtnRotateLeft.Location = new System.Drawing.Point(332, 6);
-            this.BtnRotateLeft.Name = "BtnRotateLeft";
-            this.BtnRotateLeft.Size = new System.Drawing.Size(33, 30);
-            this.BtnRotateLeft.TabIndex = 2;
-            this.BtnRotateLeft.UseVisualStyleBackColor = true;
-            this.BtnRotateLeft.Click += new System.EventHandler(this.BtnRotateLeft_Click);
-            // 
-            // ImgBig
-            // 
-            this.ImgBig.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgBig.ImageStream")));
-            this.ImgBig.TransparentColor = System.Drawing.Color.Transparent;
-            this.ImgBig.Images.SetKeyName(0, "ChangeFolderIcon24X24.png");
-            // 
-            // OpfdBrowseImage
-            // 
-            this.OpfdBrowseImage.Title = "View Image";
-            // 
-            // FbdPicturesFolder
-            // 
-            this.FbdPicturesFolder.Description = "Choose your default initial Pictures folder";
-            this.FbdPicturesFolder.RootFolder = System.Environment.SpecialFolder.MyComputer;
-            // 
-            // MnsMainMenu
-            // 
-            this.MnsMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.viewToolStripMenuItem,
-            this.settingsToolStripMenuItem});
-            this.MnsMainMenu.Location = new System.Drawing.Point(0, 0);
-            this.MnsMainMenu.Name = "MnsMainMenu";
-            this.MnsMainMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.MnsMainMenu.Size = new System.Drawing.Size(742, 24);
-            this.MnsMainMenu.TabIndex = 1;
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openPictureToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "&File";
-            // 
-            // openPictureToolStripMenuItem
-            // 
-            this.openPictureToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openPictureToolStripMenuItem.Image")));
-            this.openPictureToolStripMenuItem.Name = "openPictureToolStripMenuItem";
-            this.openPictureToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openPictureToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.openPictureToolStripMenuItem.Text = "&Browse Image";
-            this.openPictureToolStripMenuItem.Click += new System.EventHandler(this.OpenPictureToolStripMenuItem_Click);
-            // 
-            // viewToolStripMenuItem
-            // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rotateImageToolStripMenuItem,
-            this.flipImageToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.viewToolStripMenuItem.Text = "&View";
-            // 
-            // rotateImageToolStripMenuItem
-            // 
-            this.rotateImageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Rotate90degreesClockWiseToolStripMenuItem,
-            this.Rotate180degreesClockWiseToolStripMenuItem,
-            this.Rotate270degreesClockWiseToolStripMenuItem});
-            this.rotateImageToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("rotateImageToolStripMenuItem.Image")));
-            this.rotateImageToolStripMenuItem.Name = "rotateImageToolStripMenuItem";
-            this.rotateImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.rotateImageToolStripMenuItem.Text = "&Rotate Image";
-            // 
-            // Rotate90degreesClockWiseToolStripMenuItem
-            // 
-            this.Rotate90degreesClockWiseToolStripMenuItem.Image = global::ImageViewer.Properties.Resources.rotate_right;
-            this.Rotate90degreesClockWiseToolStripMenuItem.Name = "Rotate90degreesClockWiseToolStripMenuItem";
-            this.Rotate90degreesClockWiseToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.Rotate90degreesClockWiseToolStripMenuItem.Text = "&90 Degrees ClockWise";
-            this.Rotate90degreesClockWiseToolStripMenuItem.Click += new System.EventHandler(this.RotateFlipImageToolStripMenuItem_Click);
-            // 
-            // Rotate180degreesClockWiseToolStripMenuItem
-            // 
-            this.Rotate180degreesClockWiseToolStripMenuItem.Image = global::ImageViewer.Properties.Resources.rotate_right;
-            this.Rotate180degreesClockWiseToolStripMenuItem.Name = "Rotate180degreesClockWiseToolStripMenuItem";
-            this.Rotate180degreesClockWiseToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.Rotate180degreesClockWiseToolStripMenuItem.Text = "1&80 Degrees ClockWise";
-            this.Rotate180degreesClockWiseToolStripMenuItem.Click += new System.EventHandler(this.RotateFlipImageToolStripMenuItem_Click);
-            // 
-            // Rotate270degreesClockWiseToolStripMenuItem
-            // 
-            this.Rotate270degreesClockWiseToolStripMenuItem.Image = global::ImageViewer.Properties.Resources.rotate_right;
-            this.Rotate270degreesClockWiseToolStripMenuItem.Name = "Rotate270degreesClockWiseToolStripMenuItem";
-            this.Rotate270degreesClockWiseToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.Rotate270degreesClockWiseToolStripMenuItem.Text = "2&70 Degrees ClockWise";
-            this.Rotate270degreesClockWiseToolStripMenuItem.Click += new System.EventHandler(this.RotateFlipImageToolStripMenuItem_Click);
-            // 
-            // flipImageToolStripMenuItem
-            // 
-            this.flipImageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.flipVerticalToolStripMenuItem,
-            this.flipHorizentolToolStripMenuItem});
-            this.flipImageToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("flipImageToolStripMenuItem.Image")));
-            this.flipImageToolStripMenuItem.Name = "flipImageToolStripMenuItem";
-            this.flipImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.flipImageToolStripMenuItem.Text = "&Flip Image";
-            // 
-            // flipVerticalToolStripMenuItem
-            // 
-            this.flipVerticalToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("flipVerticalToolStripMenuItem.Image")));
-            this.flipVerticalToolStripMenuItem.Name = "flipVerticalToolStripMenuItem";
-            this.flipVerticalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.flipVerticalToolStripMenuItem.Text = "Flip &Vertical";
-            this.flipVerticalToolStripMenuItem.Click += new System.EventHandler(this.RotateFlipImageToolStripMenuItem_Click);
-            // 
-            // flipHorizentolToolStripMenuItem
-            // 
-            this.flipHorizentolToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("flipHorizentolToolStripMenuItem.Image")));
-            this.flipHorizentolToolStripMenuItem.Name = "flipHorizentolToolStripMenuItem";
-            this.flipHorizentolToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.flipHorizentolToolStripMenuItem.Text = "Flip &Horizontal";
-            this.flipHorizentolToolStripMenuItem.Click += new System.EventHandler(this.RotateFlipImageToolStripMenuItem_Click);
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changePicturesFolderPathToolStripMenuItem});
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.settingsToolStripMenuItem.Text = "&Settings";
-            // 
-            // changePicturesFolderPathToolStripMenuItem
-            // 
-            this.changePicturesFolderPathToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("changePicturesFolderPathToolStripMenuItem.Image")));
-            this.changePicturesFolderPathToolStripMenuItem.Name = "changePicturesFolderPathToolStripMenuItem";
-            this.changePicturesFolderPathToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-            this.changePicturesFolderPathToolStripMenuItem.Text = "&Change pictures folder path";
-            this.changePicturesFolderPathToolStripMenuItem.Click += new System.EventHandler(this.ChangePicturesFolderPathToolStripMenuItem_Click);
-            // 
             // CmImage
             // 
             this.CmImage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -288,7 +106,7 @@
             this.CTsmRotateImage,
             this.CTsmFlipImage});
             this.CmImage.Name = "CmImage";
-            this.CmImage.Size = new System.Drawing.Size(192, 98);
+            this.CmImage.Size = new System.Drawing.Size(192, 76);
             this.CmImage.Opening += new System.ComponentModel.CancelEventHandler(this.CmImage_Opening);
             // 
             // CTsmBrowseImage
@@ -354,7 +172,7 @@
             // 
             this.CTsmFlipVertical.Image = ((System.Drawing.Image)(resources.GetObject("CTsmFlipVertical.Image")));
             this.CTsmFlipVertical.Name = "CTsmFlipVertical";
-            this.CTsmFlipVertical.Size = new System.Drawing.Size(180, 22);
+            this.CTsmFlipVertical.Size = new System.Drawing.Size(151, 22);
             this.CTsmFlipVertical.Text = "Flip &Vertical";
             this.CTsmFlipVertical.Click += new System.EventHandler(this.RotateFlipImageToolStripMenuItem_Click);
             // 
@@ -362,9 +180,195 @@
             // 
             this.CTsmFlipHorizontal.Image = ((System.Drawing.Image)(resources.GetObject("CTsmFlipHorizontal.Image")));
             this.CTsmFlipHorizontal.Name = "CTsmFlipHorizontal";
-            this.CTsmFlipHorizontal.Size = new System.Drawing.Size(180, 22);
+            this.CTsmFlipHorizontal.Size = new System.Drawing.Size(151, 22);
             this.CTsmFlipHorizontal.Text = "Flip &Horizontal";
             this.CTsmFlipHorizontal.Click += new System.EventHandler(this.RotateFlipImageToolStripMenuItem_Click);
+            // 
+            // PnlBottomBar
+            // 
+            this.PnlBottomBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.PnlBottomBar.Controls.Add(this.BtnPreviousImage);
+            this.PnlBottomBar.Controls.Add(this.BtnNextImage);
+            this.PnlBottomBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlBottomBar.Location = new System.Drawing.Point(3, 374);
+            this.PnlBottomBar.Name = "PnlBottomBar";
+            this.PnlBottomBar.Size = new System.Drawing.Size(736, 43);
+            this.PnlBottomBar.TabIndex = 0;
+            // 
+            // BtnPreviousImage
+            // 
+            this.BtnPreviousImage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnPreviousImage.Enabled = false;
+            this.BtnPreviousImage.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnPreviousImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.BtnPreviousImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
+            this.BtnPreviousImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPreviousImage.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
+            this.BtnPreviousImage.ImageKey = "PreviosImage.png";
+            this.BtnPreviousImage.ImageList = this.ImgSmall;
+            this.BtnPreviousImage.Location = new System.Drawing.Point(332, 6);
+            this.BtnPreviousImage.Name = "BtnPreviousImage";
+            this.BtnPreviousImage.Size = new System.Drawing.Size(33, 30);
+            this.BtnPreviousImage.TabIndex = 5;
+            this.BtnPreviousImage.UseVisualStyleBackColor = true;
+            this.BtnPreviousImage.Click += new System.EventHandler(this.BtnPreviousImage_Click);
+            // 
+            // ImgSmall
+            // 
+            this.ImgSmall.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgSmall.ImageStream")));
+            this.ImgSmall.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImgSmall.Images.SetKeyName(0, "rotate-left.png");
+            this.ImgSmall.Images.SetKeyName(1, "rotate-right.png");
+            this.ImgSmall.Images.SetKeyName(2, "NextImage.png");
+            this.ImgSmall.Images.SetKeyName(3, "PreviosImage.png");
+            // 
+            // BtnNextImage
+            // 
+            this.BtnNextImage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnNextImage.Enabled = false;
+            this.BtnNextImage.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnNextImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.BtnNextImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
+            this.BtnNextImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnNextImage.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
+            this.BtnNextImage.ImageKey = "NextImage.png";
+            this.BtnNextImage.ImageList = this.ImgSmall;
+            this.BtnNextImage.Location = new System.Drawing.Point(371, 6);
+            this.BtnNextImage.Name = "BtnNextImage";
+            this.BtnNextImage.Size = new System.Drawing.Size(33, 30);
+            this.BtnNextImage.TabIndex = 4;
+            this.BtnNextImage.UseVisualStyleBackColor = true;
+            this.BtnNextImage.Click += new System.EventHandler(this.BtnNextImage_Click);
+            // 
+            // ImgBig
+            // 
+            this.ImgBig.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgBig.ImageStream")));
+            this.ImgBig.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImgBig.Images.SetKeyName(0, "ChangeFolderIcon24X24.png");
+            // 
+            // OpfdBrowseImage
+            // 
+            this.OpfdBrowseImage.Title = "View Image";
+            // 
+            // FbdPicturesFolder
+            // 
+            this.FbdPicturesFolder.Description = "Choose your default initial Pictures folder";
+            this.FbdPicturesFolder.RootFolder = System.Environment.SpecialFolder.MyComputer;
+            // 
+            // MnsMainMenu
+            // 
+            this.MnsMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem,
+            this.settingsToolStripMenuItem});
+            this.MnsMainMenu.Location = new System.Drawing.Point(0, 0);
+            this.MnsMainMenu.Name = "MnsMainMenu";
+            this.MnsMainMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.MnsMainMenu.Size = new System.Drawing.Size(742, 24);
+            this.MnsMainMenu.TabIndex = 1;
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openPictureToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // openPictureToolStripMenuItem
+            // 
+            this.openPictureToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openPictureToolStripMenuItem.Image")));
+            this.openPictureToolStripMenuItem.Name = "openPictureToolStripMenuItem";
+            this.openPictureToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openPictureToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.openPictureToolStripMenuItem.Text = "&Browse Image";
+            this.openPictureToolStripMenuItem.Click += new System.EventHandler(this.OpenPictureToolStripMenuItem_Click);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rotateImageToolStripMenuItem,
+            this.flipImageToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "&View";
+            // 
+            // rotateImageToolStripMenuItem
+            // 
+            this.rotateImageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Rotate90degreesClockWiseToolStripMenuItem,
+            this.Rotate180degreesClockWiseToolStripMenuItem,
+            this.Rotate270degreesClockWiseToolStripMenuItem});
+            this.rotateImageToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("rotateImageToolStripMenuItem.Image")));
+            this.rotateImageToolStripMenuItem.Name = "rotateImageToolStripMenuItem";
+            this.rotateImageToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.rotateImageToolStripMenuItem.Text = "&Rotate Image";
+            // 
+            // Rotate90degreesClockWiseToolStripMenuItem
+            // 
+            this.Rotate90degreesClockWiseToolStripMenuItem.Image = global::ImageViewer.Properties.Resources.rotate_right;
+            this.Rotate90degreesClockWiseToolStripMenuItem.Name = "Rotate90degreesClockWiseToolStripMenuItem";
+            this.Rotate90degreesClockWiseToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.Rotate90degreesClockWiseToolStripMenuItem.Text = "&90 Degrees ClockWise";
+            this.Rotate90degreesClockWiseToolStripMenuItem.Click += new System.EventHandler(this.RotateFlipImageToolStripMenuItem_Click);
+            // 
+            // Rotate180degreesClockWiseToolStripMenuItem
+            // 
+            this.Rotate180degreesClockWiseToolStripMenuItem.Image = global::ImageViewer.Properties.Resources.rotate_right;
+            this.Rotate180degreesClockWiseToolStripMenuItem.Name = "Rotate180degreesClockWiseToolStripMenuItem";
+            this.Rotate180degreesClockWiseToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.Rotate180degreesClockWiseToolStripMenuItem.Text = "1&80 Degrees ClockWise";
+            this.Rotate180degreesClockWiseToolStripMenuItem.Click += new System.EventHandler(this.RotateFlipImageToolStripMenuItem_Click);
+            // 
+            // Rotate270degreesClockWiseToolStripMenuItem
+            // 
+            this.Rotate270degreesClockWiseToolStripMenuItem.Image = global::ImageViewer.Properties.Resources.rotate_right;
+            this.Rotate270degreesClockWiseToolStripMenuItem.Name = "Rotate270degreesClockWiseToolStripMenuItem";
+            this.Rotate270degreesClockWiseToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.Rotate270degreesClockWiseToolStripMenuItem.Text = "2&70 Degrees ClockWise";
+            this.Rotate270degreesClockWiseToolStripMenuItem.Click += new System.EventHandler(this.RotateFlipImageToolStripMenuItem_Click);
+            // 
+            // flipImageToolStripMenuItem
+            // 
+            this.flipImageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.flipVerticalToolStripMenuItem,
+            this.flipHorizentolToolStripMenuItem});
+            this.flipImageToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("flipImageToolStripMenuItem.Image")));
+            this.flipImageToolStripMenuItem.Name = "flipImageToolStripMenuItem";
+            this.flipImageToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.flipImageToolStripMenuItem.Text = "&Flip Image";
+            // 
+            // flipVerticalToolStripMenuItem
+            // 
+            this.flipVerticalToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("flipVerticalToolStripMenuItem.Image")));
+            this.flipVerticalToolStripMenuItem.Name = "flipVerticalToolStripMenuItem";
+            this.flipVerticalToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.flipVerticalToolStripMenuItem.Text = "Flip &Vertical";
+            this.flipVerticalToolStripMenuItem.Click += new System.EventHandler(this.RotateFlipImageToolStripMenuItem_Click);
+            // 
+            // flipHorizentolToolStripMenuItem
+            // 
+            this.flipHorizentolToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("flipHorizentolToolStripMenuItem.Image")));
+            this.flipHorizentolToolStripMenuItem.Name = "flipHorizentolToolStripMenuItem";
+            this.flipHorizentolToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.flipHorizentolToolStripMenuItem.Text = "Flip &Horizontal";
+            this.flipHorizentolToolStripMenuItem.Click += new System.EventHandler(this.RotateFlipImageToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changePicturesFolderPathToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Text = "&Settings";
+            // 
+            // changePicturesFolderPathToolStripMenuItem
+            // 
+            this.changePicturesFolderPathToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("changePicturesFolderPathToolStripMenuItem.Image")));
+            this.changePicturesFolderPathToolStripMenuItem.Name = "changePicturesFolderPathToolStripMenuItem";
+            this.changePicturesFolderPathToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.changePicturesFolderPathToolStripMenuItem.Text = "&Change pictures folder path";
+            this.changePicturesFolderPathToolStripMenuItem.Click += new System.EventHandler(this.ChangePicturesFolderPathToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -377,6 +381,7 @@
             this.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.MnsMainMenu;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(758, 483);
@@ -385,10 +390,10 @@
             this.Shown += new System.EventHandler(this.FrmMain_Shown);
             this.TblMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PbMainDisplay)).EndInit();
+            this.CmImage.ResumeLayout(false);
             this.PnlBottomBar.ResumeLayout(false);
             this.MnsMainMenu.ResumeLayout(false);
             this.MnsMainMenu.PerformLayout();
-            this.CmImage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,9 +405,7 @@
         private System.Windows.Forms.Panel PnlBottomBar;
         private System.Windows.Forms.PictureBox PbMainDisplay;
         private System.Windows.Forms.OpenFileDialog OpfdBrowseImage;
-        private System.Windows.Forms.Button BtnRotateLeft;
         private System.Windows.Forms.ImageList ImgSmall;
-        private System.Windows.Forms.Button BtnRotateRight;
         private System.Windows.Forms.ImageList ImgBig;
         private System.Windows.Forms.FolderBrowserDialog FbdPicturesFolder;
         private System.Windows.Forms.MenuStrip MnsMainMenu;
@@ -429,6 +432,8 @@
         private System.Windows.Forms.ToolStripMenuItem CTsmFlipImage;
         private System.Windows.Forms.ToolStripMenuItem CTsmFlipVertical;
         private System.Windows.Forms.ToolStripMenuItem CTsmFlipHorizontal;
+        private System.Windows.Forms.Button BtnPreviousImage;
+        private System.Windows.Forms.Button BtnNextImage;
     }
 }
 
