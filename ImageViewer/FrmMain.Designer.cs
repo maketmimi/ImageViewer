@@ -34,7 +34,6 @@
             this.PbMainDisplay = new System.Windows.Forms.PictureBox();
             this.CmImage = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CTsmBrowseImage = new System.Windows.Forms.ToolStripMenuItem();
-            this.CTsmSeperator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CTsmRotateImage = new System.Windows.Forms.ToolStripMenuItem();
             this.CTsm90DegreesRotation = new System.Windows.Forms.ToolStripMenuItem();
             this.CTsm180DegreesRotation = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,6 +79,9 @@
             this.slideShowSpeedFastToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.CTCopyImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CTRotateFlipSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.TblMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbMainDisplay)).BeginInit();
             this.CmImage.SuspendLayout();
@@ -121,13 +123,15 @@
             // 
             this.CmImage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CTsmBrowseImage,
-            this.CTsmSeperator1,
+            this.toolStripSeparator5,
+            this.CTCopyImageToolStripMenuItem,
+            this.CTRotateFlipSeperator,
             this.CTsmRotateImage,
             this.CTsmFlipImage,
             this.toolStripSeparator1,
             this.CmStartSlideShowToolStripMenuItem});
             this.CmImage.Name = "CmImage";
-            this.CmImage.Size = new System.Drawing.Size(192, 104);
+            this.CmImage.Size = new System.Drawing.Size(192, 154);
             this.CmImage.Opening += new System.ComponentModel.CancelEventHandler(this.CmImage_Opening);
             // 
             // CTsmBrowseImage
@@ -138,11 +142,6 @@
             this.CTsmBrowseImage.Size = new System.Drawing.Size(191, 22);
             this.CTsmBrowseImage.Text = "&Browse Image";
             this.CTsmBrowseImage.Click += new System.EventHandler(this.OpenPictureToolStripMenuItem_Click);
-            // 
-            // CTsmSeperator1
-            // 
-            this.CTsmSeperator1.Name = "CTsmSeperator1";
-            this.CTsmSeperator1.Size = new System.Drawing.Size(188, 6);
             // 
             // CTsmRotateImage
             // 
@@ -382,7 +381,7 @@
             this.Rotate270degreesClockWiseToolStripMenuItem});
             this.rotateImageToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("rotateImageToolStripMenuItem.Image")));
             this.rotateImageToolStripMenuItem.Name = "rotateImageToolStripMenuItem";
-            this.rotateImageToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.rotateImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rotateImageToolStripMenuItem.Text = "&Rotate Image";
             // 
             // Rotate90degreesClockWiseToolStripMenuItem
@@ -416,7 +415,7 @@
             this.flipHorizentolToolStripMenuItem});
             this.flipImageToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("flipImageToolStripMenuItem.Image")));
             this.flipImageToolStripMenuItem.Name = "flipImageToolStripMenuItem";
-            this.flipImageToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.flipImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.flipImageToolStripMenuItem.Text = "&Flip Image";
             // 
             // flipVerticalToolStripMenuItem
@@ -471,7 +470,7 @@
             this.exitToolStripMenuItem});
             this.CmSlideShow.Name = "CmSlideShow";
             this.CmSlideShow.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.CmSlideShow.Size = new System.Drawing.Size(223, 214);
+            this.CmSlideShow.Size = new System.Drawing.Size(223, 192);
             this.CmSlideShow.Opening += new System.ComponentModel.CancelEventHandler(this.CmSlideShow_Opening);
             // 
             // CTPlaySlideShowToolStripMenuItem
@@ -546,6 +545,23 @@
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.EndSlideShow_Click);
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(188, 6);
+            // 
+            // CTCopyImageToolStripMenuItem
+            // 
+            this.CTCopyImageToolStripMenuItem.Name = "CTCopyImageToolStripMenuItem";
+            this.CTCopyImageToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.CTCopyImageToolStripMenuItem.Text = "Copy Image";
+            this.CTCopyImageToolStripMenuItem.Click += new System.EventHandler(this.CTCopyImageToolStripMenuItem_Click);
+            // 
+            // CTRotateFlipSeperator
+            // 
+            this.CTRotateFlipSeperator.Name = "CTRotateFlipSeperator";
+            this.CTRotateFlipSeperator.Size = new System.Drawing.Size(188, 6);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -600,7 +616,6 @@
         private System.Windows.Forms.ToolStripMenuItem flipHorizentolToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip CmImage;
         private System.Windows.Forms.ToolStripMenuItem CTsmBrowseImage;
-        private System.Windows.Forms.ToolStripSeparator CTsmSeperator1;
         private System.Windows.Forms.ToolStripMenuItem CTsmRotateImage;
         private System.Windows.Forms.ToolStripMenuItem CTsm90DegreesRotation;
         private System.Windows.Forms.ToolStripMenuItem CTsm180DegreesRotation;
@@ -628,6 +643,9 @@
         private System.Windows.Forms.ToolStripMenuItem slideShowSpeedMediumToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem slideShowSpeedFastToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem CTCopyImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator CTRotateFlipSeperator;
     }
 }
 

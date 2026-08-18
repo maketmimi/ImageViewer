@@ -206,18 +206,10 @@ namespace ImageViewer
 
         private void CmImage_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (!IsValidImageShown())
-            {
-                CTsmRotateImage.Visible = false;
-                CTsmFlipImage.Visible = false;
-                CTsmSeperator1.Visible = false;
-            }
-            else
-            {
-                CTsmRotateImage.Visible = true;
-                CTsmFlipImage.Visible = true;
-                CTsmSeperator1.Visible = true;
-            }
+            CTsmRotateImage.Visible = IsValidImageShown();
+            CTsmFlipImage.Visible = IsValidImageShown();
+            CTRotateFlipSeperator.Visible = IsValidImageShown();
+            CTCopyImageToolStripMenuItem.Enabled = IsValidImageShown();
         }
 
         private void DisplayNextImage()
@@ -384,6 +376,18 @@ namespace ImageViewer
         {
             CTPlaySlideShowToolStripMenuItem.Enabled = _SlideShowState == SlideShowState.Paused;
             CTPauseSlideShowToolStripMenuItem.Enabled = _SlideShowState == SlideShowState.Running;
+        }
+
+        private void CopyCurrentImageToClipBoard()
+        {
+            if (!IsValidImageShown()) return;
+
+            Clipboard.SetImage(PbMainDisplay.Image);
+        }
+
+        private void CTCopyImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CopyCurrentImageToClipBoard();
         }
     }
 }

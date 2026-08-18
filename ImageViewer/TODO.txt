@@ -1,3 +1,2 @@
-﻿1- Slides show
-2- set as desktop background
+﻿2- set as desktop background -> advanced
 3- Copy image to clipboard on right click menu
