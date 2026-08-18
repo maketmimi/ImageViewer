@@ -27,6 +27,7 @@ namespace ImageViewer
             ".tiff" ,
             ".ico"
         };
+        private readonly ToolStripMenuItem[] _SlideShowSpeedRadioButtons;
 
         public FrmMain(string InitialImagePath = null)
         {
@@ -42,6 +43,13 @@ namespace ImageViewer
                 "Icon (*.ico)|*.ico";
 
             InitializeRotateAndFlipMenuItemsTags();
+
+            _SlideShowSpeedRadioButtons = new ToolStripMenuItem[]
+            {
+                slideShowSpeedSlowToolStripMenuItem,
+                slideShowSpeedMediumToolStripMenuItem,
+                slideShowSpeedFastToolStripMenuItem
+            };
 
             _InitialImagePath = InitialImagePath;
         }
@@ -240,14 +248,142 @@ namespace ImageViewer
             TryDisplayImage(_CurrentDirectoryFilesPaths[_CurrentImageIndex]);
         }
 
-        private void BtnNextImage_Click(object sender, EventArgs e)
+        private void NextImage_Click(object sender, EventArgs e)
         {
             DisplayNextImage();
         }
 
-        private void BtnPreviousImage_Click(object sender, EventArgs e)
+        private void PreviousImage_Click(object sender, EventArgs e)
         {
             DisplayPreviousImage();
+        }
+
+        private enum SlideShowState
+        {
+            Stopped,
+            Running,
+            Paused
+        }
+
+        private FormWindowState _WindowStateBeforeSlideShow;
+        private SlideShowState _SlideShowState = SlideShowState.Stopped;
+
+        private void ChangeFormBorderStyleForSlideShow()
+        {
+            _WindowStateBeforeSlideShow = this.WindowState;
+
+            if (_WindowStateBeforeSlideShow == FormWindowState.Maximized)
+                this.WindowState = FormWindowState.Normal; // this fixes bug in the frame work that glitches full screen mode
+
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void StartSlideShow()
+        {
+            if (!IsValidImageShown() || _SlideShowState != SlideShowState.Stopped) return;
+
+            _SlideShowState = SlideShowState.Running;
+
+            MnsMainMenu.Hide();
+            PnlBottomBar.Hide();
+            TblMain.RowCount = 1;
+            this.FormBorderStyle = FormBorderStyle.None;
+            ChangeFormBorderStyleForSlideShow();
+            this.BackColor = Color.Black;
+            PbMainDisplay.BackColor = Color.Black;
+
+            CmStartSlideShowToolStripMenuItem.Enabled = false;
+            StartSlideShowToolStripMenuItem.Enabled = false;
+            endSlideShowToolStripMenuItem.Enabled = true;
+
+            PbMainDisplay.ContextMenuStrip = CmSlideShow;
+
+            SlideShowTimer.Start();
+        }
+
+        private void StopSlideShow()
+        {
+            if (_SlideShowState == SlideShowState.Stopped) return;
+
+            _SlideShowState = SlideShowState.Stopped;
+
+            SlideShowTimer.Stop();
+
+            MnsMainMenu.Show();
+            TblMain.RowCount = 2;
+            PnlBottomBar.Show();
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.WindowState = _WindowStateBeforeSlideShow;
+            this.BackColor = Color.White;
+            PbMainDisplay.BackColor = Color.White;
+
+            CmStartSlideShowToolStripMenuItem.Enabled = true;
+            StartSlideShowToolStripMenuItem.Enabled = true;
+            endSlideShowToolStripMenuItem.Enabled = false;
+
+            PbMainDisplay.ContextMenuStrip = CmImage;
+        }
+
+        private void StartSlideShow_Click(object sender, EventArgs e)
+        {
+            StartSlideShow();
+        }
+
+        private void EndSlideShow_Click(object sender, EventArgs e)
+        {
+            StopSlideShow();
+        }
+
+        private void SlideShowTimer_Tick(object sender, EventArgs e)
+        {
+            DisplayNextImage();
+        }
+
+        private void ToggleSlideShowSpeedRadioButton(ToolStripMenuItem SlideShowSpeedButton)
+        {
+            foreach (var button in _SlideShowSpeedRadioButtons)
+            {
+                if (button == SlideShowSpeedButton)
+                { 
+                    button.Checked = true;
+                    SlideShowTimer.Interval = int.Parse(button.Tag.ToString());
+                }
+                else
+                    button.Checked = false;
+            }
+        }
+
+        private void SlideShowSpeed_Click(object sender, EventArgs e)
+        {
+            ToggleSlideShowSpeedRadioButton((ToolStripMenuItem)sender);
+        }
+
+        private void PauseSlideShow()
+        {
+            SlideShowTimer.Stop();
+            _SlideShowState = SlideShowState.Paused;
+        }
+
+        private void ResumeSlideShow()
+        {
+            SlideShowTimer.Start();
+            _SlideShowState = SlideShowState.Running;
+        }
+
+        private void CTPlaySlideShowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ResumeSlideShow();
+        }
+
+        private void pauseSlideShowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PauseSlideShow();
+        }
+
+        private void CmSlideShow_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            CTPlaySlideShowToolStripMenuItem.Enabled = _SlideShowState == SlideShowState.Paused;
+            CTPauseSlideShowToolStripMenuItem.Enabled = _SlideShowState == SlideShowState.Running;
         }
     }
 }

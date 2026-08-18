@@ -42,16 +42,22 @@
             this.CTsmFlipImage = new System.Windows.Forms.ToolStripMenuItem();
             this.CTsmFlipVertical = new System.Windows.Forms.ToolStripMenuItem();
             this.CTsmFlipHorizontal = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.CmStartSlideShowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlBottomBar = new System.Windows.Forms.Panel();
+            this.BtnSlideShow = new System.Windows.Forms.Button();
+            this.ImgBig = new System.Windows.Forms.ImageList(this.components);
             this.BtnPreviousImage = new System.Windows.Forms.Button();
             this.ImgSmall = new System.Windows.Forms.ImageList(this.components);
             this.BtnNextImage = new System.Windows.Forms.Button();
-            this.ImgBig = new System.Windows.Forms.ImageList(this.components);
             this.OpfdBrowseImage = new System.Windows.Forms.OpenFileDialog();
             this.FbdPicturesFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.MnsMainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StartSlideShowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.endSlideShowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rotateImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Rotate90degreesClockWiseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,11 +68,24 @@
             this.flipHorizentolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePicturesFolderPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SlideShowTimer = new System.Windows.Forms.Timer(this.components);
+            this.CmSlideShow = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CTPlaySlideShowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CTPauseSlideShowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.slideShowSpeedSlowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.slideShowSpeedMediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.slideShowSpeedFastToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TblMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbMainDisplay)).BeginInit();
             this.CmImage.SuspendLayout();
             this.PnlBottomBar.SuspendLayout();
             this.MnsMainMenu.SuspendLayout();
+            this.CmSlideShow.SuspendLayout();
             this.SuspendLayout();
             // 
             // TblMain
@@ -104,9 +123,11 @@
             this.CTsmBrowseImage,
             this.CTsmSeperator1,
             this.CTsmRotateImage,
-            this.CTsmFlipImage});
+            this.CTsmFlipImage,
+            this.toolStripSeparator1,
+            this.CmStartSlideShowToolStripMenuItem});
             this.CmImage.Name = "CmImage";
-            this.CmImage.Size = new System.Drawing.Size(192, 76);
+            this.CmImage.Size = new System.Drawing.Size(192, 104);
             this.CmImage.Opening += new System.ComponentModel.CancelEventHandler(this.CmImage_Opening);
             // 
             // CTsmBrowseImage
@@ -184,9 +205,23 @@
             this.CTsmFlipHorizontal.Text = "Flip &Horizontal";
             this.CTsmFlipHorizontal.Click += new System.EventHandler(this.RotateFlipImageToolStripMenuItem_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(188, 6);
+            // 
+            // CmStartSlideShowToolStripMenuItem
+            // 
+            this.CmStartSlideShowToolStripMenuItem.Name = "CmStartSlideShowToolStripMenuItem";
+            this.CmStartSlideShowToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F11;
+            this.CmStartSlideShowToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.CmStartSlideShowToolStripMenuItem.Text = "Start Slide Show";
+            this.CmStartSlideShowToolStripMenuItem.Click += new System.EventHandler(this.StartSlideShow_Click);
+            // 
             // PnlBottomBar
             // 
             this.PnlBottomBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.PnlBottomBar.Controls.Add(this.BtnSlideShow);
             this.PnlBottomBar.Controls.Add(this.BtnPreviousImage);
             this.PnlBottomBar.Controls.Add(this.BtnNextImage);
             this.PnlBottomBar.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -194,6 +229,30 @@
             this.PnlBottomBar.Name = "PnlBottomBar";
             this.PnlBottomBar.Size = new System.Drawing.Size(736, 43);
             this.PnlBottomBar.TabIndex = 0;
+            // 
+            // BtnSlideShow
+            // 
+            this.BtnSlideShow.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnSlideShow.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnSlideShow.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.BtnSlideShow.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
+            this.BtnSlideShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSlideShow.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
+            this.BtnSlideShow.ImageIndex = 1;
+            this.BtnSlideShow.ImageList = this.ImgBig;
+            this.BtnSlideShow.Location = new System.Drawing.Point(352, 6);
+            this.BtnSlideShow.Name = "BtnSlideShow";
+            this.BtnSlideShow.Size = new System.Drawing.Size(33, 30);
+            this.BtnSlideShow.TabIndex = 6;
+            this.BtnSlideShow.UseVisualStyleBackColor = true;
+            this.BtnSlideShow.Click += new System.EventHandler(this.StartSlideShow_Click);
+            // 
+            // ImgBig
+            // 
+            this.ImgBig.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgBig.ImageStream")));
+            this.ImgBig.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImgBig.Images.SetKeyName(0, "ChangeFolderIcon24X24.png");
+            this.ImgBig.Images.SetKeyName(1, "image.png");
             // 
             // BtnPreviousImage
             // 
@@ -206,12 +265,12 @@
             this.BtnPreviousImage.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
             this.BtnPreviousImage.ImageKey = "PreviosImage.png";
             this.BtnPreviousImage.ImageList = this.ImgSmall;
-            this.BtnPreviousImage.Location = new System.Drawing.Point(332, 6);
+            this.BtnPreviousImage.Location = new System.Drawing.Point(311, 6);
             this.BtnPreviousImage.Name = "BtnPreviousImage";
             this.BtnPreviousImage.Size = new System.Drawing.Size(33, 30);
             this.BtnPreviousImage.TabIndex = 5;
             this.BtnPreviousImage.UseVisualStyleBackColor = true;
-            this.BtnPreviousImage.Click += new System.EventHandler(this.BtnPreviousImage_Click);
+            this.BtnPreviousImage.Click += new System.EventHandler(this.PreviousImage_Click);
             // 
             // ImgSmall
             // 
@@ -221,6 +280,7 @@
             this.ImgSmall.Images.SetKeyName(1, "rotate-right.png");
             this.ImgSmall.Images.SetKeyName(2, "NextImage.png");
             this.ImgSmall.Images.SetKeyName(3, "PreviosImage.png");
+            this.ImgSmall.Images.SetKeyName(4, "image.png");
             // 
             // BtnNextImage
             // 
@@ -233,18 +293,12 @@
             this.BtnNextImage.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
             this.BtnNextImage.ImageKey = "NextImage.png";
             this.BtnNextImage.ImageList = this.ImgSmall;
-            this.BtnNextImage.Location = new System.Drawing.Point(371, 6);
+            this.BtnNextImage.Location = new System.Drawing.Point(393, 6);
             this.BtnNextImage.Name = "BtnNextImage";
             this.BtnNextImage.Size = new System.Drawing.Size(33, 30);
             this.BtnNextImage.TabIndex = 4;
             this.BtnNextImage.UseVisualStyleBackColor = true;
-            this.BtnNextImage.Click += new System.EventHandler(this.BtnNextImage_Click);
-            // 
-            // ImgBig
-            // 
-            this.ImgBig.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgBig.ImageStream")));
-            this.ImgBig.TransparentColor = System.Drawing.Color.Transparent;
-            this.ImgBig.Images.SetKeyName(0, "ChangeFolderIcon24X24.png");
+            this.BtnNextImage.Click += new System.EventHandler(this.NextImage_Click);
             // 
             // OpfdBrowseImage
             // 
@@ -259,6 +313,7 @@
             // 
             this.MnsMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.actionsToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.settingsToolStripMenuItem});
             this.MnsMainMenu.Location = new System.Drawing.Point(0, 0);
@@ -283,6 +338,32 @@
             this.openPictureToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.openPictureToolStripMenuItem.Text = "&Browse Image";
             this.openPictureToolStripMenuItem.Click += new System.EventHandler(this.OpenPictureToolStripMenuItem_Click);
+            // 
+            // actionsToolStripMenuItem
+            // 
+            this.actionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StartSlideShowToolStripMenuItem,
+            this.endSlideShowToolStripMenuItem});
+            this.actionsToolStripMenuItem.Name = "actionsToolStripMenuItem";
+            this.actionsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.actionsToolStripMenuItem.Text = "&Actions";
+            // 
+            // StartSlideShowToolStripMenuItem
+            // 
+            this.StartSlideShowToolStripMenuItem.Name = "StartSlideShowToolStripMenuItem";
+            this.StartSlideShowToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F11;
+            this.StartSlideShowToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.StartSlideShowToolStripMenuItem.Text = "&Start Slide Show";
+            this.StartSlideShowToolStripMenuItem.Click += new System.EventHandler(this.StartSlideShow_Click);
+            // 
+            // endSlideShowToolStripMenuItem
+            // 
+            this.endSlideShowToolStripMenuItem.Enabled = false;
+            this.endSlideShowToolStripMenuItem.Name = "endSlideShowToolStripMenuItem";
+            this.endSlideShowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F11)));
+            this.endSlideShowToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.endSlideShowToolStripMenuItem.Text = "End Slide Show";
+            this.endSlideShowToolStripMenuItem.Click += new System.EventHandler(this.EndSlideShow_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -370,6 +451,101 @@
             this.changePicturesFolderPathToolStripMenuItem.Text = "&Change pictures folder path";
             this.changePicturesFolderPathToolStripMenuItem.Click += new System.EventHandler(this.ChangePicturesFolderPathToolStripMenuItem_Click);
             // 
+            // SlideShowTimer
+            // 
+            this.SlideShowTimer.Interval = 3000;
+            this.SlideShowTimer.Tick += new System.EventHandler(this.SlideShowTimer_Tick);
+            // 
+            // CmSlideShow
+            // 
+            this.CmSlideShow.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CTPlaySlideShowToolStripMenuItem,
+            this.CTPauseSlideShowToolStripMenuItem,
+            this.nextToolStripMenuItem,
+            this.backToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.slideShowSpeedSlowToolStripMenuItem,
+            this.slideShowSpeedMediumToolStripMenuItem,
+            this.slideShowSpeedFastToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.exitToolStripMenuItem});
+            this.CmSlideShow.Name = "CmSlideShow";
+            this.CmSlideShow.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.CmSlideShow.Size = new System.Drawing.Size(223, 214);
+            this.CmSlideShow.Opening += new System.ComponentModel.CancelEventHandler(this.CmSlideShow_Opening);
+            // 
+            // CTPlaySlideShowToolStripMenuItem
+            // 
+            this.CTPlaySlideShowToolStripMenuItem.Enabled = false;
+            this.CTPlaySlideShowToolStripMenuItem.Name = "CTPlaySlideShowToolStripMenuItem";
+            this.CTPlaySlideShowToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.CTPlaySlideShowToolStripMenuItem.Text = "&Play";
+            this.CTPlaySlideShowToolStripMenuItem.Click += new System.EventHandler(this.CTPlaySlideShowToolStripMenuItem_Click);
+            // 
+            // CTPauseSlideShowToolStripMenuItem
+            // 
+            this.CTPauseSlideShowToolStripMenuItem.Name = "CTPauseSlideShowToolStripMenuItem";
+            this.CTPauseSlideShowToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.CTPauseSlideShowToolStripMenuItem.Text = "P&ause";
+            this.CTPauseSlideShowToolStripMenuItem.Click += new System.EventHandler(this.pauseSlideShowToolStripMenuItem_Click);
+            // 
+            // nextToolStripMenuItem
+            // 
+            this.nextToolStripMenuItem.Name = "nextToolStripMenuItem";
+            this.nextToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.nextToolStripMenuItem.Text = "&Next";
+            this.nextToolStripMenuItem.Click += new System.EventHandler(this.NextImage_Click);
+            // 
+            // backToolStripMenuItem
+            // 
+            this.backToolStripMenuItem.Name = "backToolStripMenuItem";
+            this.backToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.backToolStripMenuItem.Text = "&Back";
+            this.backToolStripMenuItem.Click += new System.EventHandler(this.PreviousImage_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(219, 6);
+            // 
+            // slideShowSpeedSlowToolStripMenuItem
+            // 
+            this.slideShowSpeedSlowToolStripMenuItem.Name = "slideShowSpeedSlowToolStripMenuItem";
+            this.slideShowSpeedSlowToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.slideShowSpeedSlowToolStripMenuItem.Tag = "6000";
+            this.slideShowSpeedSlowToolStripMenuItem.Text = "Slide Show Speed - &Slow";
+            this.slideShowSpeedSlowToolStripMenuItem.Click += new System.EventHandler(this.SlideShowSpeed_Click);
+            // 
+            // slideShowSpeedMediumToolStripMenuItem
+            // 
+            this.slideShowSpeedMediumToolStripMenuItem.Checked = true;
+            this.slideShowSpeedMediumToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.slideShowSpeedMediumToolStripMenuItem.Name = "slideShowSpeedMediumToolStripMenuItem";
+            this.slideShowSpeedMediumToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.slideShowSpeedMediumToolStripMenuItem.Tag = "3000";
+            this.slideShowSpeedMediumToolStripMenuItem.Text = "Slide Show Speed - &Medium";
+            this.slideShowSpeedMediumToolStripMenuItem.Click += new System.EventHandler(this.SlideShowSpeed_Click);
+            // 
+            // slideShowSpeedFastToolStripMenuItem
+            // 
+            this.slideShowSpeedFastToolStripMenuItem.Name = "slideShowSpeedFastToolStripMenuItem";
+            this.slideShowSpeedFastToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.slideShowSpeedFastToolStripMenuItem.Tag = "1000";
+            this.slideShowSpeedFastToolStripMenuItem.Text = "Slide Show Speed - &Fast";
+            this.slideShowSpeedFastToolStripMenuItem.Click += new System.EventHandler(this.SlideShowSpeed_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(219, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.exitToolStripMenuItem.Text = "&Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.EndSlideShow_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -394,6 +570,7 @@
             this.PnlBottomBar.ResumeLayout(false);
             this.MnsMainMenu.ResumeLayout(false);
             this.MnsMainMenu.PerformLayout();
+            this.CmSlideShow.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -414,7 +591,6 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changePicturesFolderPathToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem rotateImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Rotate90degreesClockWiseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Rotate180degreesClockWiseToolStripMenuItem;
@@ -434,6 +610,24 @@
         private System.Windows.Forms.ToolStripMenuItem CTsmFlipHorizontal;
         private System.Windows.Forms.Button BtnPreviousImage;
         private System.Windows.Forms.Button BtnNextImage;
+        private System.Windows.Forms.Button BtnSlideShow;
+        private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem StartSlideShowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem CmStartSlideShowToolStripMenuItem;
+        private System.Windows.Forms.Timer SlideShowTimer;
+        private System.Windows.Forms.ToolStripMenuItem endSlideShowToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip CmSlideShow;
+        private System.Windows.Forms.ToolStripMenuItem CTPlaySlideShowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CTPauseSlideShowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem nextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem slideShowSpeedSlowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem slideShowSpeedMediumToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem slideShowSpeedFastToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
 }
 

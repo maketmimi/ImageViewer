@@ -1,1 +1,3 @@
-﻿Flip feature
+﻿1- Slides show
+2- set as desktop background
+3- Copy image to clipboard on right click menu
