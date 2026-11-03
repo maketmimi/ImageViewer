@@ -31,9 +31,22 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.TblMain = new System.Windows.Forms.TableLayoutPanel();
+            this.PnlICOControls = new System.Windows.Forms.Panel();
+            this.LbIconImageCount = new System.Windows.Forms.Label();
+            this.BtnPreviousICOImage = new System.Windows.Forms.Button();
+            this.ImgSmall = new System.Windows.Forms.ImageList(this.components);
+            this.BtnNextICOImage = new System.Windows.Forms.Button();
+            this.PnlBottomBar = new System.Windows.Forms.Panel();
+            this.BtnSlideShow = new System.Windows.Forms.Button();
+            this.ImgBig = new System.Windows.Forms.ImageList(this.components);
+            this.BtnPreviousImage = new System.Windows.Forms.Button();
+            this.BtnNextImage = new System.Windows.Forms.Button();
             this.PbMainDisplay = new System.Windows.Forms.PictureBox();
             this.CmImage = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CTsmBrowseImage = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.CTCopyImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CTRotateFlipSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.CTsmRotateImage = new System.Windows.Forms.ToolStripMenuItem();
             this.CTsm90DegreesRotation = new System.Windows.Forms.ToolStripMenuItem();
             this.CTsm180DegreesRotation = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,12 +56,6 @@
             this.CTsmFlipHorizontal = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.CmStartSlideShowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PnlBottomBar = new System.Windows.Forms.Panel();
-            this.BtnSlideShow = new System.Windows.Forms.Button();
-            this.ImgBig = new System.Windows.Forms.ImageList(this.components);
-            this.BtnPreviousImage = new System.Windows.Forms.Button();
-            this.ImgSmall = new System.Windows.Forms.ImageList(this.components);
-            this.BtnNextImage = new System.Windows.Forms.Button();
             this.OpfdBrowseImage = new System.Windows.Forms.OpenFileDialog();
             this.FbdPicturesFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.MnsMainMenu = new System.Windows.Forms.MenuStrip();
@@ -79,13 +86,11 @@
             this.slideShowSpeedFastToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.CTCopyImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CTRotateFlipSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.TblMain.SuspendLayout();
+            this.PnlICOControls.SuspendLayout();
+            this.PnlBottomBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbMainDisplay)).BeginInit();
             this.CmImage.SuspendLayout();
-            this.PnlBottomBar.SuspendLayout();
             this.MnsMainMenu.SuspendLayout();
             this.CmSlideShow.SuspendLayout();
             this.SuspendLayout();
@@ -95,16 +100,160 @@
             this.TblMain.BackColor = System.Drawing.Color.Transparent;
             this.TblMain.ColumnCount = 1;
             this.TblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TblMain.Controls.Add(this.PnlICOControls, 0, 1);
+            this.TblMain.Controls.Add(this.PnlBottomBar, 0, 2);
             this.TblMain.Controls.Add(this.PbMainDisplay, 0, 0);
-            this.TblMain.Controls.Add(this.PnlBottomBar, 0, 1);
             this.TblMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TblMain.Location = new System.Drawing.Point(0, 24);
             this.TblMain.Name = "TblMain";
             this.TblMain.RowCount = 2;
             this.TblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.TblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.TblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.TblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.TblMain.Size = new System.Drawing.Size(742, 420);
             this.TblMain.TabIndex = 0;
+            // 
+            // PnlICOControls
+            // 
+            this.PnlICOControls.BackColor = System.Drawing.Color.White;
+            this.PnlICOControls.Controls.Add(this.LbIconImageCount);
+            this.PnlICOControls.Controls.Add(this.BtnPreviousICOImage);
+            this.PnlICOControls.Controls.Add(this.BtnNextICOImage);
+            this.PnlICOControls.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlICOControls.Location = new System.Drawing.Point(3, 338);
+            this.PnlICOControls.Name = "PnlICOControls";
+            this.PnlICOControls.Size = new System.Drawing.Size(736, 30);
+            this.PnlICOControls.TabIndex = 3;
+            this.PnlICOControls.Visible = false;
+            // 
+            // LbIconImageCount
+            // 
+            this.LbIconImageCount.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.LbIconImageCount.AutoSize = true;
+            this.LbIconImageCount.Location = new System.Drawing.Point(399, 6);
+            this.LbIconImageCount.Name = "LbIconImageCount";
+            this.LbIconImageCount.Size = new System.Drawing.Size(34, 18);
+            this.LbIconImageCount.TabIndex = 6;
+            this.LbIconImageCount.Text = "N/A";
+            // 
+            // BtnPreviousICOImage
+            // 
+            this.BtnPreviousICOImage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnPreviousICOImage.Enabled = false;
+            this.BtnPreviousICOImage.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnPreviousICOImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.BtnPreviousICOImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
+            this.BtnPreviousICOImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPreviousICOImage.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
+            this.BtnPreviousICOImage.ImageKey = "PreviosImage.png";
+            this.BtnPreviousICOImage.ImageList = this.ImgSmall;
+            this.BtnPreviousICOImage.Location = new System.Drawing.Point(343, 4);
+            this.BtnPreviousICOImage.Name = "BtnPreviousICOImage";
+            this.BtnPreviousICOImage.Size = new System.Drawing.Size(22, 22);
+            this.BtnPreviousICOImage.TabIndex = 5;
+            this.BtnPreviousICOImage.UseVisualStyleBackColor = true;
+            this.BtnPreviousICOImage.Click += new System.EventHandler(this.BtnPreviousICOImage_Click);
+            // 
+            // ImgSmall
+            // 
+            this.ImgSmall.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgSmall.ImageStream")));
+            this.ImgSmall.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImgSmall.Images.SetKeyName(0, "rotate-left.png");
+            this.ImgSmall.Images.SetKeyName(1, "rotate-right.png");
+            this.ImgSmall.Images.SetKeyName(2, "NextImage.png");
+            this.ImgSmall.Images.SetKeyName(3, "PreviosImage.png");
+            this.ImgSmall.Images.SetKeyName(4, "image.png");
+            // 
+            // BtnNextICOImage
+            // 
+            this.BtnNextICOImage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnNextICOImage.Enabled = false;
+            this.BtnNextICOImage.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnNextICOImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.BtnNextICOImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
+            this.BtnNextICOImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnNextICOImage.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
+            this.BtnNextICOImage.ImageKey = "NextImage.png";
+            this.BtnNextICOImage.ImageList = this.ImgSmall;
+            this.BtnNextICOImage.Location = new System.Drawing.Point(371, 4);
+            this.BtnNextICOImage.Name = "BtnNextICOImage";
+            this.BtnNextICOImage.Size = new System.Drawing.Size(22, 22);
+            this.BtnNextICOImage.TabIndex = 4;
+            this.BtnNextICOImage.UseVisualStyleBackColor = true;
+            this.BtnNextICOImage.Click += new System.EventHandler(this.BtnNextICOImage_Click);
+            // 
+            // PnlBottomBar
+            // 
+            this.PnlBottomBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
+            this.PnlBottomBar.Controls.Add(this.BtnSlideShow);
+            this.PnlBottomBar.Controls.Add(this.BtnPreviousImage);
+            this.PnlBottomBar.Controls.Add(this.BtnNextImage);
+            this.PnlBottomBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlBottomBar.Location = new System.Drawing.Point(3, 374);
+            this.PnlBottomBar.Name = "PnlBottomBar";
+            this.PnlBottomBar.Size = new System.Drawing.Size(736, 43);
+            this.PnlBottomBar.TabIndex = 2;
+            // 
+            // BtnSlideShow
+            // 
+            this.BtnSlideShow.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnSlideShow.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnSlideShow.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.BtnSlideShow.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
+            this.BtnSlideShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSlideShow.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
+            this.BtnSlideShow.ImageIndex = 1;
+            this.BtnSlideShow.ImageList = this.ImgBig;
+            this.BtnSlideShow.Location = new System.Drawing.Point(352, 6);
+            this.BtnSlideShow.Name = "BtnSlideShow";
+            this.BtnSlideShow.Size = new System.Drawing.Size(33, 30);
+            this.BtnSlideShow.TabIndex = 6;
+            this.BtnSlideShow.UseVisualStyleBackColor = true;
+            this.BtnSlideShow.Click += new System.EventHandler(this.StartSlideShow_Click);
+            // 
+            // ImgBig
+            // 
+            this.ImgBig.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgBig.ImageStream")));
+            this.ImgBig.TransparentColor = System.Drawing.Color.Transparent;
+            this.ImgBig.Images.SetKeyName(0, "ChangeFolderIcon24X24.png");
+            this.ImgBig.Images.SetKeyName(1, "image.png");
+            // 
+            // BtnPreviousImage
+            // 
+            this.BtnPreviousImage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnPreviousImage.Enabled = false;
+            this.BtnPreviousImage.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnPreviousImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.BtnPreviousImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
+            this.BtnPreviousImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPreviousImage.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
+            this.BtnPreviousImage.ImageKey = "PreviosImage.png";
+            this.BtnPreviousImage.ImageList = this.ImgSmall;
+            this.BtnPreviousImage.Location = new System.Drawing.Point(311, 6);
+            this.BtnPreviousImage.Name = "BtnPreviousImage";
+            this.BtnPreviousImage.Size = new System.Drawing.Size(33, 30);
+            this.BtnPreviousImage.TabIndex = 5;
+            this.BtnPreviousImage.UseVisualStyleBackColor = true;
+            this.BtnPreviousImage.Click += new System.EventHandler(this.PreviousImage_Click);
+            // 
+            // BtnNextImage
+            // 
+            this.BtnNextImage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BtnNextImage.Enabled = false;
+            this.BtnNextImage.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BtnNextImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
+            this.BtnNextImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
+            this.BtnNextImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnNextImage.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
+            this.BtnNextImage.ImageKey = "NextImage.png";
+            this.BtnNextImage.ImageList = this.ImgSmall;
+            this.BtnNextImage.Location = new System.Drawing.Point(393, 6);
+            this.BtnNextImage.Name = "BtnNextImage";
+            this.BtnNextImage.Size = new System.Drawing.Size(33, 30);
+            this.BtnNextImage.TabIndex = 4;
+            this.BtnNextImage.UseVisualStyleBackColor = true;
+            this.BtnNextImage.Click += new System.EventHandler(this.NextImage_Click);
             // 
             // PbMainDisplay
             // 
@@ -113,7 +262,7 @@
             this.PbMainDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PbMainDisplay.Location = new System.Drawing.Point(3, 3);
             this.PbMainDisplay.Name = "PbMainDisplay";
-            this.PbMainDisplay.Size = new System.Drawing.Size(736, 365);
+            this.PbMainDisplay.Size = new System.Drawing.Size(736, 329);
             this.PbMainDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PbMainDisplay.TabIndex = 1;
             this.PbMainDisplay.TabStop = false;
@@ -131,7 +280,7 @@
             this.toolStripSeparator1,
             this.CmStartSlideShowToolStripMenuItem});
             this.CmImage.Name = "CmImage";
-            this.CmImage.Size = new System.Drawing.Size(192, 154);
+            this.CmImage.Size = new System.Drawing.Size(192, 132);
             this.CmImage.Opening += new System.ComponentModel.CancelEventHandler(this.CmImage_Opening);
             // 
             // CTsmBrowseImage
@@ -142,6 +291,23 @@
             this.CTsmBrowseImage.Size = new System.Drawing.Size(191, 22);
             this.CTsmBrowseImage.Text = "&Browse Image";
             this.CTsmBrowseImage.Click += new System.EventHandler(this.OpenPictureToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(188, 6);
+            // 
+            // CTCopyImageToolStripMenuItem
+            // 
+            this.CTCopyImageToolStripMenuItem.Name = "CTCopyImageToolStripMenuItem";
+            this.CTCopyImageToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.CTCopyImageToolStripMenuItem.Text = "Copy Image";
+            this.CTCopyImageToolStripMenuItem.Click += new System.EventHandler(this.CTCopyImageToolStripMenuItem_Click);
+            // 
+            // CTRotateFlipSeperator
+            // 
+            this.CTRotateFlipSeperator.Name = "CTRotateFlipSeperator";
+            this.CTRotateFlipSeperator.Size = new System.Drawing.Size(188, 6);
             // 
             // CTsmRotateImage
             // 
@@ -216,88 +382,6 @@
             this.CmStartSlideShowToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.CmStartSlideShowToolStripMenuItem.Text = "Start Slide Show";
             this.CmStartSlideShowToolStripMenuItem.Click += new System.EventHandler(this.StartSlideShow_Click);
-            // 
-            // PnlBottomBar
-            // 
-            this.PnlBottomBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(234)))), ((int)(((byte)(234)))));
-            this.PnlBottomBar.Controls.Add(this.BtnSlideShow);
-            this.PnlBottomBar.Controls.Add(this.BtnPreviousImage);
-            this.PnlBottomBar.Controls.Add(this.BtnNextImage);
-            this.PnlBottomBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlBottomBar.Location = new System.Drawing.Point(3, 374);
-            this.PnlBottomBar.Name = "PnlBottomBar";
-            this.PnlBottomBar.Size = new System.Drawing.Size(736, 43);
-            this.PnlBottomBar.TabIndex = 0;
-            // 
-            // BtnSlideShow
-            // 
-            this.BtnSlideShow.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnSlideShow.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnSlideShow.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
-            this.BtnSlideShow.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
-            this.BtnSlideShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSlideShow.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
-            this.BtnSlideShow.ImageIndex = 1;
-            this.BtnSlideShow.ImageList = this.ImgBig;
-            this.BtnSlideShow.Location = new System.Drawing.Point(352, 6);
-            this.BtnSlideShow.Name = "BtnSlideShow";
-            this.BtnSlideShow.Size = new System.Drawing.Size(33, 30);
-            this.BtnSlideShow.TabIndex = 6;
-            this.BtnSlideShow.UseVisualStyleBackColor = true;
-            this.BtnSlideShow.Click += new System.EventHandler(this.StartSlideShow_Click);
-            // 
-            // ImgBig
-            // 
-            this.ImgBig.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgBig.ImageStream")));
-            this.ImgBig.TransparentColor = System.Drawing.Color.Transparent;
-            this.ImgBig.Images.SetKeyName(0, "ChangeFolderIcon24X24.png");
-            this.ImgBig.Images.SetKeyName(1, "image.png");
-            // 
-            // BtnPreviousImage
-            // 
-            this.BtnPreviousImage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnPreviousImage.Enabled = false;
-            this.BtnPreviousImage.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnPreviousImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
-            this.BtnPreviousImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
-            this.BtnPreviousImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPreviousImage.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
-            this.BtnPreviousImage.ImageKey = "PreviosImage.png";
-            this.BtnPreviousImage.ImageList = this.ImgSmall;
-            this.BtnPreviousImage.Location = new System.Drawing.Point(311, 6);
-            this.BtnPreviousImage.Name = "BtnPreviousImage";
-            this.BtnPreviousImage.Size = new System.Drawing.Size(33, 30);
-            this.BtnPreviousImage.TabIndex = 5;
-            this.BtnPreviousImage.UseVisualStyleBackColor = true;
-            this.BtnPreviousImage.Click += new System.EventHandler(this.PreviousImage_Click);
-            // 
-            // ImgSmall
-            // 
-            this.ImgSmall.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImgSmall.ImageStream")));
-            this.ImgSmall.TransparentColor = System.Drawing.Color.Transparent;
-            this.ImgSmall.Images.SetKeyName(0, "rotate-left.png");
-            this.ImgSmall.Images.SetKeyName(1, "rotate-right.png");
-            this.ImgSmall.Images.SetKeyName(2, "NextImage.png");
-            this.ImgSmall.Images.SetKeyName(3, "PreviosImage.png");
-            this.ImgSmall.Images.SetKeyName(4, "image.png");
-            // 
-            // BtnNextImage
-            // 
-            this.BtnNextImage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnNextImage.Enabled = false;
-            this.BtnNextImage.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.BtnNextImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
-            this.BtnNextImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
-            this.BtnNextImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnNextImage.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold);
-            this.BtnNextImage.ImageKey = "NextImage.png";
-            this.BtnNextImage.ImageList = this.ImgSmall;
-            this.BtnNextImage.Location = new System.Drawing.Point(393, 6);
-            this.BtnNextImage.Name = "BtnNextImage";
-            this.BtnNextImage.Size = new System.Drawing.Size(33, 30);
-            this.BtnNextImage.TabIndex = 4;
-            this.BtnNextImage.UseVisualStyleBackColor = true;
-            this.BtnNextImage.Click += new System.EventHandler(this.NextImage_Click);
             // 
             // OpfdBrowseImage
             // 
@@ -381,7 +465,7 @@
             this.Rotate270degreesClockWiseToolStripMenuItem});
             this.rotateImageToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("rotateImageToolStripMenuItem.Image")));
             this.rotateImageToolStripMenuItem.Name = "rotateImageToolStripMenuItem";
-            this.rotateImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rotateImageToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.rotateImageToolStripMenuItem.Text = "&Rotate Image";
             // 
             // Rotate90degreesClockWiseToolStripMenuItem
@@ -415,7 +499,7 @@
             this.flipHorizentolToolStripMenuItem});
             this.flipImageToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("flipImageToolStripMenuItem.Image")));
             this.flipImageToolStripMenuItem.Name = "flipImageToolStripMenuItem";
-            this.flipImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.flipImageToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.flipImageToolStripMenuItem.Text = "&Flip Image";
             // 
             // flipVerticalToolStripMenuItem
@@ -545,23 +629,6 @@
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.EndSlideShow_Click);
             // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(188, 6);
-            // 
-            // CTCopyImageToolStripMenuItem
-            // 
-            this.CTCopyImageToolStripMenuItem.Name = "CTCopyImageToolStripMenuItem";
-            this.CTCopyImageToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.CTCopyImageToolStripMenuItem.Text = "Copy Image";
-            this.CTCopyImageToolStripMenuItem.Click += new System.EventHandler(this.CTCopyImageToolStripMenuItem_Click);
-            // 
-            // CTRotateFlipSeperator
-            // 
-            this.CTRotateFlipSeperator.Name = "CTRotateFlipSeperator";
-            this.CTRotateFlipSeperator.Size = new System.Drawing.Size(188, 6);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -581,9 +648,11 @@
             this.Text = "Image Viewer";
             this.Shown += new System.EventHandler(this.FrmMain_Shown);
             this.TblMain.ResumeLayout(false);
+            this.PnlICOControls.ResumeLayout(false);
+            this.PnlICOControls.PerformLayout();
+            this.PnlBottomBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PbMainDisplay)).EndInit();
             this.CmImage.ResumeLayout(false);
-            this.PnlBottomBar.ResumeLayout(false);
             this.MnsMainMenu.ResumeLayout(false);
             this.MnsMainMenu.PerformLayout();
             this.CmSlideShow.ResumeLayout(false);
@@ -595,7 +664,6 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel TblMain;
-        private System.Windows.Forms.Panel PnlBottomBar;
         private System.Windows.Forms.PictureBox PbMainDisplay;
         private System.Windows.Forms.OpenFileDialog OpfdBrowseImage;
         private System.Windows.Forms.ImageList ImgSmall;
@@ -623,9 +691,6 @@
         private System.Windows.Forms.ToolStripMenuItem CTsmFlipImage;
         private System.Windows.Forms.ToolStripMenuItem CTsmFlipVertical;
         private System.Windows.Forms.ToolStripMenuItem CTsmFlipHorizontal;
-        private System.Windows.Forms.Button BtnPreviousImage;
-        private System.Windows.Forms.Button BtnNextImage;
-        private System.Windows.Forms.Button BtnSlideShow;
         private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem StartSlideShowToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -646,6 +711,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem CTCopyImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator CTRotateFlipSeperator;
+        private System.Windows.Forms.Panel PnlBottomBar;
+        private System.Windows.Forms.Button BtnSlideShow;
+        private System.Windows.Forms.Button BtnPreviousImage;
+        private System.Windows.Forms.Button BtnNextImage;
+        private System.Windows.Forms.Panel PnlICOControls;
+        private System.Windows.Forms.Button BtnPreviousICOImage;
+        private System.Windows.Forms.Button BtnNextICOImage;
+        private System.Windows.Forms.Label LbIconImageCount;
     }
 }
 

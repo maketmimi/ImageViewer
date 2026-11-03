@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using IconParser.Core;
 
 namespace ImageViewer
 {
@@ -28,6 +29,15 @@ namespace ImageViewer
             ".ico"
         };
         private readonly ToolStripMenuItem[] _SlideShowSpeedRadioButtons;
+
+        private IcoParser _IcoImage = null;
+        private bool _IsICOLoaded
+        {
+            get
+            {
+                return _IcoImage != null;
+            }
+        }
 
         public FrmMain(string InitialImagePath = null)
         {
@@ -101,15 +111,85 @@ namespace ImageViewer
             return AllSupportedImageTypes.Contains(Path.GetExtension(ImagePath).ToLower());
         }
 
-        private bool TryDisplayImage(string ImagePath)
+        private void ShowICOControlsIfNotVisible()
         {
+            if (!PnlICOControls.Visible)
+            {
+                TblMain.RowCount++;
+                PnlICOControls.Show();
+            }
+        }
+        
+        private void HideICOControlsIfVisible()
+        {
+            if (PnlICOControls.Visible)
+            {
+                PnlICOControls.Hide();
+                TblMain.RowCount--;
+            }
+        } 
+
+        private bool TryLoadICOImage(string ImagePath, out Image LoadedImage)
+        {
+            if (IcoParser.CheckIcoFileHeader(ImagePath))
+            {
+                try
+                {
+                    _IcoImage = new IcoParser(ImagePath);
+
+                    UpdateLbIconImageCount();
+
+                    if (_SlideShowState == SlideShowState.Stopped)
+                        ShowICOControlsIfNotVisible();
+
+                    LoadedImage = _IcoImage.GetNextImage();
+                    return true;
+                }
+                catch
+                {
+                    LoadedImage = null;
+                    return false;
+                }
+            }
+
+            LoadedImage = null;
+            return false;
+        }
+
+        private Image LoadImage(string ImagePath)
+        {
+            PbMainDisplay.Image?.Dispose();
+            _IcoImage?.Dispose();
+            _IcoImage = null;
+
+            Image imageToReturn;
+
+            if (TryLoadICOImage(ImagePath, out imageToReturn))
+            {
+                return imageToReturn;
+            }
+            
             try
             {
-                PbMainDisplay.Image = Image.FromFile(ImagePath);
+                return Image.FromFile(ImagePath);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private bool TryDisplayImage(string ImagePath)
+        {
+            Image LoadedImage = LoadImage(ImagePath);
+            
+            if (LoadedImage != null) // means the image loaded successfully
+            {
+                PbMainDisplay.Image = LoadedImage;
                 this.Text = "Image Viewer - " + Path.GetFileName(ImagePath);
                 _IsInvalidImage = false;
             }
-            catch
+            else
             {
                 _IsInvalidImage = true;
                 PbMainDisplay.Image = Resources.ImageInavlidErrorSmall;
@@ -270,6 +350,24 @@ namespace ImageViewer
             this.WindowState = FormWindowState.Maximized;
         }
 
+        private void ShowBottomBarIfNotVisible()
+        {
+            if (!PnlBottomBar.Visible)
+            {
+                TblMain.RowCount++;
+                PnlBottomBar.Show();
+            }
+        }
+
+        private void HideBottomBarIfVisible()
+        {
+            if (PnlBottomBar.Visible)
+            {
+                PnlBottomBar.Hide();
+                TblMain.RowCount--;
+            }
+        }
+
         private void StartSlideShow()
         {
             if (!IsValidImageShown() || _SlideShowState != SlideShowState.Stopped) return;
@@ -277,8 +375,10 @@ namespace ImageViewer
             _SlideShowState = SlideShowState.Running;
 
             MnsMainMenu.Hide();
-            PnlBottomBar.Hide();
-            TblMain.RowCount = 1;
+            HideBottomBarIfVisible();
+
+            HideICOControlsIfVisible();
+
             this.FormBorderStyle = FormBorderStyle.None;
             ChangeFormBorderStyleForSlideShow();
             this.BackColor = Color.Black;
@@ -302,8 +402,12 @@ namespace ImageViewer
             SlideShowTimer.Stop();
 
             MnsMainMenu.Show();
-            TblMain.RowCount = 2;
-            PnlBottomBar.Show();
+
+            ShowBottomBarIfNotVisible();
+
+            if (_IsICOLoaded)
+                ShowICOControlsIfNotVisible();
+
             this.FormBorderStyle = FormBorderStyle.Sizable;
             this.WindowState = _WindowStateBeforeSlideShow;
             this.BackColor = Color.White;
@@ -388,6 +492,46 @@ namespace ImageViewer
         private void CTCopyImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CopyCurrentImageToClipBoard();
+        }
+
+        private void UpdateLbIconImageCount()
+        {
+            if (_IsICOLoaded)
+                LbIconImageCount.Text = $"Image {_IcoImage.CurrentImageNumber} of {_IcoImage.NumberOfImagesInCurrentIcoFile}";
+        }
+
+        private void DisplayNextICOImage()
+        {
+            if (!_IsICOLoaded) return;
+
+            Image imageToDisplay = _IcoImage.GetNextImage();
+
+            if (imageToDisplay == null) return;
+
+            PbMainDisplay.Image = imageToDisplay;
+            UpdateLbIconImageCount();
+        }
+
+        private void BtnNextICOImage_Click(object sender, EventArgs e)
+        {
+            DisplayNextICOImage();
+        }
+
+        private void DisplayPreviousICOImage()
+        {
+            if (!_IsICOLoaded) return;
+
+            Image imageToDisplay = _IcoImage.GetPreviousImage();
+
+            if (imageToDisplay == null) return;
+
+            PbMainDisplay.Image = imageToDisplay;
+            UpdateLbIconImageCount();
+        }
+
+        private void BtnPreviousICOImage_Click(object sender, EventArgs e)
+        {
+            DisplayPreviousICOImage();
         }
     }
 }
