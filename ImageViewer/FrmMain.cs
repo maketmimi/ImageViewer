@@ -63,7 +63,7 @@ namespace ImageViewer
 
             _InitialImagePath = InitialImagePath;
         }
-
+        
         private void InitializeRotateAndFlipMenuItemsTags()
         {
             Rotate90degreesClockWiseToolStripMenuItem.Tag = RotateFlipType.Rotate90FlipNone;
@@ -115,7 +115,6 @@ namespace ImageViewer
         {
             if (!PnlICOControls.Visible)
             {
-                TblMain.RowCount++;
                 PnlICOControls.Show();
             }
         }
@@ -125,7 +124,6 @@ namespace ImageViewer
             if (PnlICOControls.Visible)
             {
                 PnlICOControls.Hide();
-                TblMain.RowCount--;
             }
         } 
 
@@ -147,10 +145,11 @@ namespace ImageViewer
                 }
                 catch
                 {
-                    LoadedImage = null;
-                    return false;
+                    // do nothing
                 }
             }
+
+            HideICOControlsIfVisible();
 
             LoadedImage = null;
             return false;
@@ -159,6 +158,7 @@ namespace ImageViewer
         private Image LoadImage(string ImagePath)
         {
             PbMainDisplay.Image?.Dispose();
+            PbMainDisplay.Image = null;
             _IcoImage?.Dispose();
             _IcoImage = null;
 
@@ -354,7 +354,6 @@ namespace ImageViewer
         {
             if (!PnlBottomBar.Visible)
             {
-                TblMain.RowCount++;
                 PnlBottomBar.Show();
             }
         }
@@ -364,7 +363,6 @@ namespace ImageViewer
             if (PnlBottomBar.Visible)
             {
                 PnlBottomBar.Hide();
-                TblMain.RowCount--;
             }
         }
 
@@ -508,6 +506,8 @@ namespace ImageViewer
 
             if (imageToDisplay == null) return;
 
+            PbMainDisplay.Image?.Dispose();
+
             PbMainDisplay.Image = imageToDisplay;
             UpdateLbIconImageCount();
         }
@@ -524,6 +524,8 @@ namespace ImageViewer
             Image imageToDisplay = _IcoImage.GetPreviousImage();
 
             if (imageToDisplay == null) return;
+
+            PbMainDisplay.Image?.Dispose();
 
             PbMainDisplay.Image = imageToDisplay;
             UpdateLbIconImageCount();

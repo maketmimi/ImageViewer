@@ -106,11 +106,10 @@
             this.TblMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TblMain.Location = new System.Drawing.Point(0, 24);
             this.TblMain.Name = "TblMain";
-            this.TblMain.RowCount = 2;
+            this.TblMain.RowCount = 3;
             this.TblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.TblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.TblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.TblMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.TblMain.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.TblMain.Size = new System.Drawing.Size(742, 420);
             this.TblMain.TabIndex = 0;
             // 
@@ -140,7 +139,6 @@
             // BtnPreviousICOImage
             // 
             this.BtnPreviousICOImage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnPreviousICOImage.Enabled = false;
             this.BtnPreviousICOImage.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BtnPreviousICOImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
             this.BtnPreviousICOImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));
@@ -168,7 +166,6 @@
             // BtnNextICOImage
             // 
             this.BtnNextICOImage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BtnNextICOImage.Enabled = false;
             this.BtnNextICOImage.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BtnNextICOImage.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(254)))));
             this.BtnNextICOImage.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(234)))), ((int)(((byte)(254)))));

@@ -48,8 +48,9 @@
     <Optimize>true</Optimize>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IconParser">
-      <HintPath>..\..\IconParser\IconParser\bin\x86\Release\IconParser.dll</HintPath>
+    <Reference Include="IconParser, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\IconParser.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -113,7 +114,9 @@
     <Content Include="Assets\rotate-right.png" />
     <Content Include="Assets\RotateImageIcon.png" />
     <Content Include="image.ico" />
+    <Content Include="Libs\IconParser.dll" />
     <Content Include="TODO.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
